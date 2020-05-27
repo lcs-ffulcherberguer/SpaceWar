@@ -13,6 +13,10 @@ class GameScene: SKScene {
     //Add player
     let player = SKSpriteNode(imageNamed: "playerShip")
     
+    //Add sound when you fire the bullet, out of any function so there won't be any dely on the sound
+    let bulletSound = SKAction.playSoundFileNamed("pop.wav", waitForCompletion: false)
+    
+    
     //Create backgroud
     override func didMove(to view: SKView) {
         
@@ -58,7 +62,7 @@ class GameScene: SKScene {
         //Delete bullet once it reaches the point
         let deleteBullet = SKAction.removeFromParent()
         //Create a sequence
-        let bulletSequence = SKAction.sequence([moveBullet, deleteBullet])
+        let bulletSequence = SKAction.sequence([bulletSound, moveBullet, deleteBullet])
         //Make the sequence run
         bullet.run(bulletSequence)
         
