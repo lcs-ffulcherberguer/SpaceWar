@@ -66,7 +66,6 @@ class GameScene: SKScene {
         //Make the sequence run
         bullet.run(bulletSequence)
         
-        
     }
     
     //Tap to fire the bullet
@@ -74,6 +73,24 @@ class GameScene: SKScene {
         fireBullet()
     }
     
+    //Give movement to the player
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch: AnyObject in touches {
+            
+            //Location that we are touching in the scene
+            let pointOfTouch = touch.location(in: self)
+            //Where we were touching in the scene
+            let previousPointOfTouch = touch.previousLocation(in: self)
+             //How much we have dragged left or right
+            let amountDragged = pointOfTouch.x - previousPointOfTouch.x
+            //Move the player
+            player.position.x += amountDragged
+            
+            
+            
+            
+            
+    }
     
     
     
@@ -81,3 +98,4 @@ class GameScene: SKScene {
 }
  
  
+}
