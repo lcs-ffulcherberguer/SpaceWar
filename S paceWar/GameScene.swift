@@ -54,7 +54,7 @@ class GameScene: SKScene {
         self.addChild(bullet)
         
         //Move the bullet
-        let moveBullet = SKAction.moveTo(y: self.size.height + bullet.size.height, duration: 1)
+        let moveBullet = SKAction.moveTo(y: self.size.height + bullet.size.height, duration: 1.50)
         //Delete bullet once it reaches the point
         let deleteBullet = SKAction.removeFromParent()
         //Create a sequence
