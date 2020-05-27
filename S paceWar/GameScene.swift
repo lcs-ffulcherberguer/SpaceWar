@@ -23,7 +23,23 @@ class GameScene: SKScene {
         background.zPosition = 0
         //Add background
         self.addChild(background)
+        
+        //Add player asset
+        let player = SKSpriteNode(imageNamed: "playerShip")
+        //Determine size of the player
+        player.setScale(0.27)
+        //Position of the player
+        player.position = CGPoint(x: self.size.width/2, y: self.size.height * 0.2)
+        //Give the player a layer
+        player.zPosition = 2
+        //Add player asset
+        self.addChild(player)
+        
+        
+        
+        
     }
     
 }
+ 
  
