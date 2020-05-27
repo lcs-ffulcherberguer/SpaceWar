@@ -10,6 +10,9 @@ import SpriteKit
 
 class GameScene: SKScene {
     
+    //Add player
+    let player = SKSpriteNode(imageNamed: "playerShip")
+    
     //Create backgroud
     override func didMove(to view: SKView) {
         
@@ -24,8 +27,6 @@ class GameScene: SKScene {
         //Add background
         self.addChild(background)
         
-        //Add player asset
-        let player = SKSpriteNode(imageNamed: "playerShip")
         //Determine size of the player
         player.setScale(0.27)
         //Position of the player
@@ -36,9 +37,42 @@ class GameScene: SKScene {
         self.addChild(player)
         
         
+    }
+    
+    //Create a new funtion for the bullet
+    func fireBullet()  {
+        
+        //Add the bullet
+        let bullet = SKSpriteNode(imageNamed: "bullet")
+        //Determine the size of the bullet
+        bullet.setScale(0.20)
+        //Match bullet position to the player
+        bullet.position = player.position
+        //Give bullet a layer
+        bullet.zPosition = 1
+        //Add bullet asset
+        self.addChild(bullet)
+        
+        //Move the bullet
+        let moveBullet = SKAction.moveTo(y: self.size.height + bullet.size.height, duration: 1)
+        //Delete bullet once it reaches the point
+        let deleteBullet = SKAction.removeFromParent()
+        //Create a sequence
+        let bulletSequence = SKAction.sequence([moveBullet, deleteBullet])
+        //Make the sequence run
+        bullet.run(bulletSequence)
         
         
     }
+    
+    //Tap to fire the bullet
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        fireBullet()
+    }
+    
+    
+    
+    
     
 }
  
