@@ -18,7 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1C1F765B247E9C40000C9CC8 /* S paceWar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "S paceWar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C1F765B247E9C40000C9CC8 /* SpaceWar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C1F765E247E9C40000C9CC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C1F7660247E9C40000C9CC8 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		1C1F7662247E9C40000C9CC8 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -52,7 +52,7 @@
 		1C1F765C247E9C40000C9CC8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1C1F765B247E9C40000C9CC8 /* S paceWar.app */,
+				1C1F765B247E9C40000C9CC8 /* SpaceWar.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -76,9 +76,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1C1F765A247E9C40000C9CC8 /* S paceWar */ = {
+		1C1F765A247E9C40000C9CC8 /* SpaceWar */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1C1F7673247E9C54000C9CC8 /* Build configuration list for PBXNativeTarget "S paceWar" */;
+			buildConfigurationList = 1C1F7673247E9C54000C9CC8 /* Build configuration list for PBXNativeTarget "SpaceWar" */;
 			buildPhases = (
 				1C1F7657247E9C40000C9CC8 /* Sources */,
 				1C1F7658247E9C40000C9CC8 /* Frameworks */,
@@ -88,9 +88,9 @@
 			);
 			dependencies = (
 			);
-			name = "S paceWar";
+			name = SpaceWar;
 			productName = "S paceWar";
-			productReference = 1C1F765B247E9C40000C9CC8 /* S paceWar.app */;
+			productReference = 1C1F765B247E9C40000C9CC8 /* SpaceWar.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -108,7 +108,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1C1F7656247E9C40000C9CC8 /* Build configuration list for PBXProject "S paceWar" */;
+			buildConfigurationList = 1C1F7656247E9C40000C9CC8 /* Build configuration list for PBXProject "SpaceWar" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -121,7 +121,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1C1F765A247E9C40000C9CC8 /* S paceWar */,
+				1C1F765A247E9C40000C9CC8 /* SpaceWar */,
 			);
 		};
 /* End PBXProject section */
@@ -224,7 +224,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -278,7 +278,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -327,7 +327,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1C1F7656247E9C40000C9CC8 /* Build configuration list for PBXProject "S paceWar" */ = {
+		1C1F7656247E9C40000C9CC8 /* Build configuration list for PBXProject "SpaceWar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1C1F7671247E9C54000C9CC8 /* Debug */,
@@ -336,7 +336,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1C1F7673247E9C54000C9CC8 /* Build configuration list for PBXNativeTarget "S paceWar" */ = {
+		1C1F7673247E9C54000C9CC8 /* Build configuration list for PBXNativeTarget "SpaceWar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1C1F7674247E9C54000C9CC8 /* Debug */,
