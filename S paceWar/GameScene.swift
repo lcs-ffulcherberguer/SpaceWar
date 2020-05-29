@@ -22,16 +22,11 @@ class GameScene: SKScene {
     override init(size: CGSize) {
         
         //Create playable width of the game
-        let maxAspectRatio: CGFloat = 16.0/9.0
+        let maxAspectRatio: CGFloat = 14.0/9.0
         let playableWidth = size.height / maxAspectRatio
         //Create Margin for the gamescene
         let margin = (size.width - playableWidth) / 2
         gameArea = CGRect(x: margin, y: 0, width: playableWidth, height: size.height)
-        
-        
-        
-        
-        
         
         
         super.init(size: size)
@@ -78,7 +73,7 @@ class GameScene: SKScene {
         //Add the bullet
         let bullet = SKSpriteNode(imageNamed: "bullet")
         //Determine the size of the bullet
-        bullet.setScale(0.20)
+        bullet.setScale(0.10)
         //Match bullet position to the player
         bullet.position = player.position
         //Give bullet a layer
@@ -124,9 +119,10 @@ class GameScene: SKScene {
              // Too far left
              if player.position.x <= gameArea.minX + player.size.width/2 {
                  player.position.x = gameArea.minX + player.size.width/2
+                
              }
             
-            
+        
             
     }
     
