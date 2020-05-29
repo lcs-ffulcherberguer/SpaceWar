@@ -16,6 +16,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //Add sound when you fire the bullet, out of any function so there won't be any dely on the sound
     let bulletSound = SKAction.playSoundFileNamed("pop.wav", waitForCompletion: false)
     
+    //Make them interact with specific things
+    struct physicsCategories {
+        static let None : UInt32 = 0
+        static let Player : UInt32 = 0b1 //1
+        static let Bullet : UInt32 = 0b10 //2
+        static let Enemy : UInt32 = 0b100 //4
+         
+    }
+    
+    
     //Create enemyship
     func random() -> CGFloat {
         return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
@@ -74,11 +84,43 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.physicsBody = SKPhysicsBody(rectangleOf: player.size)
         //Don't let it be afected by gravity
         player.physicsBody!.affectedByGravity = false
+        //Give player interaction
+        player.physicsBody!.categoryBitMask = physicsCategories.Player
+        //No colision
+        player.physicsBody!.collisionBitMask = physicsCategories.None
+        //Have contact with the enemy
+        player.physicsBody!.contactTestBitMask = physicsCategories.Enemy
         //Add player asset
         self.addChild(player)
         
         //Start Sequence
         startNewLevel()
+        
+    }
+    
+    //Run when there is contact
+    func didBegin(_ contact: SKPhysicsContact) {
+        <#code#>
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    //Make enemy come by themselves
+    func startNewLevel(){
+        let spawn = SKAction.run(spawnEnemy)
+        //Wait for the next flow
+        let waitToSpawn = SKAction.wait(forDuration: 1)
+        //Create Sequence
+        let spawnSequence = SKAction.sequence([spawn, waitToSpawn])
+        //Keep doing the sequence
+        let spawnForever = SKAction.repeatForever(spawnSequence)
+        //Run the sequence on the game scene
+        self.run(spawnForever)
         
     }
     
@@ -97,6 +139,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bullet.physicsBody = SKPhysicsBody(rectangleOf: bullet.size)
         //Don't let it be afected by gravity
         bullet.physicsBody!.affectedByGravity = false
+        //Give bullet interaction
+        bullet.physicsBody!.categoryBitMask = physicsCategories.Bullet
+        //No colision
+        bullet.physicsBody!.collisionBitMask = physicsCategories.None
+        //Have contact with the enemy
+        bullet.physicsBody!.contactTestBitMask = physicsCategories.Enemy
         //Add bullet asset
         self.addChild(bullet)
         
@@ -134,6 +182,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         enemy.physicsBody = SKPhysicsBody(rectangleOf: enemy.size)
         //Don't let it be afected by gravity
         enemy.physicsBody!.affectedByGravity = false
+        //Give bullet interaction
+        enemy.physicsBody!.categoryBitMask = physicsCategories.Enemy
+        //No colision
+        enemy.physicsBody!.collisionBitMask = physicsCategories.None
+        //Have contact with the player and the bullet
+        enemy.physicsBody!.contactTestBitMask = physicsCategories.Player | physicsCategories.Bullet
         //Add player asset
         self.addChild(enemy)
         
@@ -156,19 +210,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
        
     }
     
-    //Make enemy come by themselves
-    func startNewLevel(){
-        let spawn = SKAction.run(spawnEnemy)
-        //Wait for the next flow
-        let waitToSpawn = SKAction.wait(forDuration: 1)
-        //Create Sequence
-        let spawnSequence = SKAction.sequence([spawn, waitToSpawn])
-        //Keep doing the sequence
-        let spawnForever = SKAction.repeatForever(spawnSequence)
-        //Run the sequence on the game scene
-        self.run(spawnForever)
-        
-    }
+    
     
 
     //Tap to fire the bullet
