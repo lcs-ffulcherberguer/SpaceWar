@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //Add player
     let player = SKSpriteNode(imageNamed: "playerShip")
@@ -47,11 +47,11 @@ class GameScene: SKScene {
     }
     
         
-    
-    
-    
     //Create backgroud
     override func didMove(to view: SKView) {
+        
+        //Be able to have contact in the scene
+        self.physicsWorld.contactDelegate = self
         
         let background = SKSpriteNode(imageNamed: "background")
         
@@ -70,13 +70,15 @@ class GameScene: SKScene {
         player.position = CGPoint(x: self.size.width/2, y: self.size.height * 0.2)
         //Give the player a layer
         player.zPosition = 2
+        //Add phisics to the player
+        player.physicsBody = SKPhysicsBody(rectangleOf: player.size)
+        //Don't let it be afected by gravity
+        player.physicsBody!.affectedByGravity = false
         //Add player asset
         self.addChild(player)
         
         //Start Sequence
         startNewLevel()
-        
-         
         
     }
     
@@ -91,6 +93,10 @@ class GameScene: SKScene {
         bullet.position = player.position
         //Give bullet a layer
         bullet.zPosition = 1
+        //Add phisics to the player
+        bullet.physicsBody = SKPhysicsBody(rectangleOf: bullet.size)
+        //Don't let it be afected by gravity
+        bullet.physicsBody!.affectedByGravity = false
         //Add bullet asset
         self.addChild(bullet)
         
@@ -103,7 +109,6 @@ class GameScene: SKScene {
         //Make the sequence run
         bullet.run(bulletSequence)
         
-    
         
     }
 
@@ -125,6 +130,10 @@ class GameScene: SKScene {
         enemy.position = startPoint
         //Give enemy a layer
         enemy.zPosition = 2
+        //Add phisics to the player
+        enemy.physicsBody = SKPhysicsBody(rectangleOf: enemy.size)
+        //Don't let it be afected by gravity
+        enemy.physicsBody!.affectedByGravity = false
         //Add player asset
         self.addChild(enemy)
         
@@ -132,7 +141,7 @@ class GameScene: SKScene {
         let moveEnemy = SKAction.move(to: endPoint, duration: 1.5)
         //Delete enemy after it goes to the endpoint
         let deleteEnemy = SKAction.removeFromParent()
-        //Continues that seuence everytime
+        //Continues that sequence everytime
         let enemySequence = SKAction.sequence([moveEnemy, deleteEnemy])
         //Run the sequence
         enemy.run(enemySequence)
@@ -145,7 +154,6 @@ class GameScene: SKScene {
         enemy.zRotation = amountToRotate
         
        
-        
     }
     
     //Make enemy come by themselves
@@ -160,16 +168,9 @@ class GameScene: SKScene {
         //Run the sequence on the game scene
         self.run(spawnForever)
         
-        
-        
-        
     }
     
-    
-    
-    
-    
-    
+
     //Tap to fire the bullet
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         fireBullet()
@@ -185,7 +186,7 @@ class GameScene: SKScene {
             let pointOfTouch = touch.location(in: self)
             //Where we were touching in the scene
             let previousPointOfTouch = touch.previousLocation(in: self)
-             //How much we have dragged left or right
+            //How much we have dragged left or right
             let amountDragged = pointOfTouch.x - previousPointOfTouch.x
             //Move the player
             player.position.x += amountDragged
