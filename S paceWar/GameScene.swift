@@ -100,8 +100,47 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //Run when there is contact
     func didBegin(_ contact: SKPhysicsContact) {
-        <#code#>
-    }
+        
+        //Declare bodies
+        var body1 = SKPhysicsBody()
+        var body2 = SKPhysicsBody()
+        
+        //If any contacs happens
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+            body1 = contact.bodyA
+            body2 = contact.bodyB
+        }
+        
+        //If it not happens flip it
+        else{
+            
+            body1 = contact.bodyB
+            body2 = contact.bodyA
+        }
+        
+        //If the player hits the enemy
+        if body1.categoryBitMask == physicsCategories.Player && body2.categoryBitMask == physicsCategories.Enemy{
+        
+            //If the hit happens delete the player and the enemy
+            body1.node?.removeFromParent()
+            body2.node?.removeFromParent()
+            
+        }
+        
+        //If the bullet hits the enemy
+        if body1.categoryBitMask == physicsCategories.Bullet && body2.categoryBitMask == physicsCategories.Enemy  {
+            
+            //If the hit happens delete the bullet and the enemy
+            body1.node?.removeFromParent()
+            body2.node?.removeFromParent()
+            
+        }
+        
+        
+        
+        
+        
+     }
     
     
     
