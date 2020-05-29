@@ -16,6 +16,16 @@ class GameScene: SKScene {
     //Add sound when you fire the bullet, out of any function so there won't be any dely on the sound
     let bulletSound = SKAction.playSoundFileNamed("pop.wav", waitForCompletion: false)
     
+    //Create enemyship
+    func random() -> CGFloat {
+        return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
+    }
+    
+    //Setting up the infromation for a random number
+    func random(min min: CGFloat, max: CGFloat) -> CGFloat {
+        return random() * (max - min) + min
+    }
+    
     //Create game area
     var gameArea = CGRect()
     
@@ -92,10 +102,52 @@ class GameScene: SKScene {
         
     }
 
+    //Create enemyship 
+    func spawnEnemy(){
+        let randomXStart = random(min: gameArea.minX, max: gameArea.maxX)
+        //Where the enemy will move to
+        let randomXEnd = random(min: gameArea.minX, max: gameArea.maxX)
+        //Where the enemy ship will begin
+        let startPoint = CGPoint(x: randomXStart, y: self.size.height * 1.2)
+        //Where the enemy ship will stop
+        let endPoint = CGPoint(x: randomXEnd, y: -self.size.height * 0.2)
+        
+        //Add enemy asset
+        let enemy = SKSpriteNode(imageNamed: "enemyShip")
+        //Set enemy size
+        enemy.setScale(0.15 )
+        //POsition of the enemy
+        enemy.position = startPoint
+        //Give enemy a layer
+        enemy.zPosition = 2
+        //Add player asset
+        self.addChild(enemy)
+        
+        //Make enemy move to its end position
+        let moveEnemy = SKAction.move(to: endPoint, duration: 1.5)
+        //Delete enemy after it goes to the endpoint
+        let deleteEnemy = SKAction.removeFromParent()
+        //Continues that seuence everytime
+        let enemySequence = SKAction.sequence([moveEnemy, deleteEnemy])
+        //Run the sequence
+        enemy.run(enemySequence)
+        
+        //Figure out the difference between the two points
+        let dx = endPoint.x - startPoint.x
+        let dy = endPoint.y - startPoint.y
+        //Make enemy rotate to face the player
+        let amountToRotate = atan2(dy, dx)
+        enemy.zRotation = amountToRotate
+        
+        
+    }
+    
     
     //Tap to fire the bullet
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         fireBullet()
+        spawnEnemy()
+        
     }
     
     //Give movement to the player
