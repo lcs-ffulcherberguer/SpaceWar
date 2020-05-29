@@ -73,6 +73,9 @@ class GameScene: SKScene {
         //Add player asset
         self.addChild(player)
         
+        //Start Sequence
+        startNewLevel()
+        
          
         
     }
@@ -100,6 +103,8 @@ class GameScene: SKScene {
         //Make the sequence run
         bullet.run(bulletSequence)
         
+    
+        
     }
 
     //Create enemyship 
@@ -115,7 +120,7 @@ class GameScene: SKScene {
         //Add enemy asset
         let enemy = SKSpriteNode(imageNamed: "enemyShip")
         //Set enemy size
-        enemy.setScale(0.15 )
+        enemy.setScale(0.13)
         //POsition of the enemy
         enemy.position = startPoint
         //Give enemy a layer
@@ -139,8 +144,7 @@ class GameScene: SKScene {
         let amountToRotate = atan2(dy, dx)
         enemy.zRotation = amountToRotate
         
-        //Start Sequence
-        startNewLevel()
+       
         
     }
     
