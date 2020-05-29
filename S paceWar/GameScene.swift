@@ -139,14 +139,37 @@ class GameScene: SKScene {
         let amountToRotate = atan2(dy, dx)
         enemy.zRotation = amountToRotate
         
+        //Start Sequence
+        startNewLevel()
         
     }
+    
+    //Make enemy come by themselves
+    func startNewLevel(){
+        let spawn = SKAction.run(spawnEnemy)
+        //Wait for the next flow
+        let waitToSpawn = SKAction.wait(forDuration: 1)
+        //Create Sequence
+        let spawnSequence = SKAction.sequence([spawn, waitToSpawn])
+        //Keep doing the sequence
+        let spawnForever = SKAction.repeatForever(spawnSequence)
+        //Run the sequence on the game scene
+        self.run(spawnForever)
+        
+        
+        
+        
+    }
+    
+    
+    
+    
     
     
     //Tap to fire the bullet
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         fireBullet()
-        spawnEnemy()
+        
         
     }
     
