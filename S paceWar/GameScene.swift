@@ -75,7 +75,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(background)
         
         //Determine size of the player
-        player.setScale(0.27)
+        player.setScale(0.65)
         //Position of the player
         player.position = CGPoint(x: self.size.width/2, y: self.size.height * 0.2)
         //Give the player a layer
