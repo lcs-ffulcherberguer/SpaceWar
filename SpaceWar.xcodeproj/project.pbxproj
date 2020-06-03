@@ -16,6 +16,7 @@
 		1C1F766C247E9C54000C9CC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C1F766B247E9C54000C9CC8 /* Assets.xcassets */; };
 		1C1F766F247E9C54000C9CC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C1F766D247E9C54000C9CC8 /* LaunchScreen.storyboard */; };
 		1C1F7677247EF2D6000C9CC8 /* pop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1C1F7676247EF2D6000C9CC8 /* pop.wav */; };
+		1C96DA332487FFB200873A17 /* smart-bomb.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1C96DA322487FFB200873A17 /* smart-bomb.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		1C1F766E247E9C54000C9CC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1C1F7670247E9C54000C9CC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C1F7676247EF2D6000C9CC8 /* pop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pop.wav; sourceTree = "<group>"; };
+		1C96DA322487FFB200873A17 /* smart-bomb.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "smart-bomb.wav"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				1C1F7662247E9C40000C9CC8 /* Actions.sks */,
 				1C1F7664247E9C40000C9CC8 /* GameScene.swift */,
 				1C1F7666247E9C40000C9CC8 /* GameViewController.swift */,
+				1C96DA322487FFB200873A17 /* smart-bomb.wav */,
 				1C1F7676247EF2D6000C9CC8 /* pop.wav */,
 				1C1F7668247E9C40000C9CC8 /* Main.storyboard */,
 				1C1F766B247E9C54000C9CC8 /* Assets.xcassets */,
@@ -137,6 +140,7 @@
 				1C1F7677247EF2D6000C9CC8 /* pop.wav in Resources */,
 				1C1F766A247E9C40000C9CC8 /* Main.storyboard in Resources */,
 				1C1F7661247E9C40000C9CC8 /* GameScene.sks in Resources */,
+				1C96DA332487FFB200873A17 /* smart-bomb.wav in Resources */,
 				1C1F766C247E9C54000C9CC8 /* Assets.xcassets in Resources */,
 				1C1F766F247E9C54000C9CC8 /* LaunchScreen.storyboard in Resources */,
 				1C1F7663247E9C40000C9CC8 /* Actions.sks in Resources */,

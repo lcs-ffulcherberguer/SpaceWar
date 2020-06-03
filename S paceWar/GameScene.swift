@@ -16,6 +16,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //Add sound when you fire the bullet, out of any function so there won't be any dely on the sound
     let bulletSound = SKAction.playSoundFileNamed("pop.wav", waitForCompletion: false)
     
+    //Add sound to the explosion
+    let explosionSound = SKAction.playSoundFileNamed("smart-bomb.wav", waitForCompletion: false)
+    
+    
+    
     //Make them interact with specific things
     struct physicsCategories {
         static let None : UInt32 = 0
@@ -120,6 +125,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //If the player hits the enemy
         if body1.categoryBitMask == physicsCategories.Player && body2.categoryBitMask == physicsCategories.Enemy{
+            
+            
+            
+            //Only do this when there is a node
+            if body1.node != nil{
+            //When it hits the player do the Explosion
+            spwanExplosion(spawnPosition: body1.node!.position)
+            }
+            
+            
+            //Only do this when there is a node
+            if body2.node != nil {
+            //Whne it hits the enemy do th explosion
+            spwanExplosion(spawnPosition: body2.node!.position)
+            }
         
             //If the hit happens delete the player and the enemy
             body1.node?.removeFromParent()
@@ -128,7 +148,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         //If the bullet hits the enemy
-        if body1.categoryBitMask == physicsCategories.Bullet && body2.categoryBitMask == physicsCategories.Enemy  {
+        if body1.categoryBitMask == physicsCategories.Bullet && body2.categoryBitMask == physicsCategories.Enemy && body2.node?.position.y > self.size.height {
+            
+            
+            //Only do this when there is a node
+            if body2.node != nil {
+            //If the bullet an enemy hit
+            spwanExplosion(spawnPosition: body2.node!.position)
+            }
             
             //If the hit happens delete the bullet and the enemy
             body1.node?.removeFromParent()
@@ -136,18 +163,45 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
         
-        
-        
-        
-        
      }
     
+    //Everytime you kill a enemy a explosion will happen
+    func spwanExplosion(spawnPosition: CGPoint){
+        
+        //Add asset
+        let explosion = SKSpriteNode(imageNamed: "explosion")
+        //Set starting position
+        explosion.position = spawnPosition
+        //Give it a layer
+        explosion.zPosition = 3
+        //Set scale
+        explosion.setScale(0)
+        //Add asset
+        self.addChild(explosion)
+        
+        //Make explosion bigger
+        let scaleIn = SKAction.scale(to: 1, duration: 0.1)
+        //Fade out
+        let fadeOut = SKAction.fadeOut(withDuration:  0.1)
+        //Delete explosion
+        let delete = SKAction.removeFromParent()
+        
+        //Run as a sequence
+        let explosionSequence = SKAction.sequence([explosionSound, scaleIn, fadeOut, delete])
+        //Run the sequence
+        explosion.run(explosionSequence)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
     
-    
-    
-    
-    
-    
+  
     
     //Make enemy come by themselves
     func startNewLevel(){
@@ -212,7 +266,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //Add enemy asset
         let enemy = SKSpriteNode(imageNamed: "enemyShip")
         //Set enemy size
-        enemy.setScale(0.13)
+        enemy.setScale(0.35)
         //POsition of the enemy
         enemy.position = startPoint
         //Give enemy a layer
