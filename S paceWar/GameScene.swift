@@ -116,7 +116,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             body2 = contact.bodyB
         }
         
-        //If it not happens flip it
+    //If it not happens flip it
         else{
             
             body1 = contact.bodyB
@@ -137,7 +137,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             //Only do this when there is a node
             if body2.node != nil {
-            //Whne it hits the enemy do th explosion
+            //When it hits the enemy do th explosion
             spwanExplosion(spawnPosition: body2.node!.position)
             }
         
@@ -147,15 +147,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
         
-        //If the bullet hits the enemy
-        if body1.categoryBitMask == physicsCategories.Bullet && body2.categoryBitMask == physicsCategories.Enemy && body2.node?.position.y > self.size.height {
+        ///If the bullet hits the enemy
+        if body1.categoryBitMask == physicsCategories.Bullet && body2.categoryBitMask == physicsCategories.Enemy && body2.node?.position.y ?? 0 > self.size.height {
             
             
             //Only do this when there is a node
             if body2.node != nil {
             //If the bullet an enemy hit
             spwanExplosion(spawnPosition: body2.node!.position)
-            }
+        }
             
             //If the hit happens delete the bullet and the enemy
             body1.node?.removeFromParent()
@@ -348,3 +348,4 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
  
  
 }
+
